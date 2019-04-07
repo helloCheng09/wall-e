@@ -1,6 +1,6 @@
 <p align="center">
     <a href="#">
-        <img src="../img/wall-e.png" alt="wall-e" width="360"/>
+        <img src="./img/wall-e.png" alt="wall-e" width="360"/>
     </a>
 </p>
 
