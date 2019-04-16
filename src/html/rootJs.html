@@ -16,15 +16,104 @@
 
 <body>
 
-    <div id="wall-e">
+    <div id="wallE">
         <div align="center">
             <h6>Wall E</h6>
         </div>
         <textarea style="color:red;" name="" id="demo" cols="30" rows="1" placeholder="ww"></textarea>
+
+        <!-- <div id="ajaxloader1"></div>
+
+        <div id="ajaxloader2">
+            <div class="outer"></div>
+            <div class="inner"></div>
+        </div> -->
+
+        <!-- <div id="ajaxloader3">
+            <div class="outer"></div>
+            <div class="inner"></div>
+        </div>
+
+        <div id="ajaxbar1">
+            <div id="block1" class="barlittle"></div>
+            <div id="block2" class="barlittle"></div>
+            <div id="block3" class="barlittle"></div>
+            <div id="block4" class="barlittle"></div>
+            <div id="block5" class="barlittle"></div>
+        </div>
+
+        <div id="ajaxwave1">
+            <div id="pointcircle1" class="pointcircle"></div>
+            <div id="pointcircle2" class="pointcircle"></div>
+            <div id="pointcircle3" class="pointcircle"></div>
+            <div id="pointcircle4" class="pointcircle"></div>
+            <div id="pointcircle5" class="pointcircle"></div>
+        </div>
+
+        <div id="facebook">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <div id="loadpulse">
+            <div class="segment">
+                <div id="layer1" class="ball"></div>
+                <div id="layer7" class="pulse"></div>
+            </div>
+            <div class="segment">
+                <div id="layer2" class="ball"></div>
+                <div id="layer8" class="pulse"></div>
+            </div>
+            <div class="segment">
+                <div id="layer3" class="ball"></div>
+                <div id="layer9" class="pulse"></div>
+            </div>
+            <div class="segment">
+                <div id="layer4" class="ball"></div>
+                <div id="layer10" class="pulse"></div>
+            </div>
+            <div class="segment">
+                <div id="layer5" class="ball"></div>
+                <div id="layer11" class="pulse"></div>
+            </div>
+        </div>
+
+        <div id="shadowloader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <h1 class="loadingtext">
+            <span>L</span>
+            <span>o</span>
+            <span>a</span>
+            <span>d</span>
+            <span>i</span>
+            <span>n</span>
+            <span>g</span>
+        </h1> -->
+
+        <div class="wall-alert" style="display:none">
+            <div class="wall-alert-content" style="display:none">
+                我是新弹窗
+            </div>
+        </div>
+
     </div>
+    <script>
+        $('html,body').click(function () {
+            $(".wall-alert").show();
+
+            $('.wall-alert-content').show();
+        })
+    </script>
 
 </body>
 
 </html>
-    <!-- js -->
-    <script type='text/javascript' src="../js/index.js?t=<?php echo time();?>"></script>
+<!-- js -->
+<script type='text/javascript' src="../js/index.js?t=<?php echo time();?>"></script>
