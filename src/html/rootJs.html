@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../css/index.css?t=<php echo time();>">
     <link rel="stylesheet" href="../css/StyleDepend/wall-e.css?t=<php echo time();>">
     <!-- js -->
-    <script  src="../js/JsDepend/jQuery.min.js" type="text/javascript"></script>
+    <script src="../js/JsDepend/jQuery.min.js" type="text/javascript"></script>
     <script src="../js/wall-e.js?t=<?php echo time();?>" type="text/javascript"></script>
 </head>
 
@@ -97,28 +97,91 @@
             <span>g</span>
         </h1> -->
 
-        <div class="wall-alert" style="display:none">
-            <div class="wall-alert-content" style="display:none">
-                我是新弹窗
-            </div>
-        </div>
+
 
     </div>
     <script>
-        $('html,body').click(function () {
-            $(".wall-alert").show();
+        /**
+         * animationDuration 动画时间
+         * aniClass 动画分类 {ani-spring 弹簧}
+         * delay 延迟关闭时间
+         * animationDurClose 关闭动画时间
+         * 
+         * 
+         **/
+        function alertfn (obj) {
+            // 关闭前一个弹窗
+            clearTimeout(wall.alertTimer) 
+            $(".wall-alert").remove() 
+            // 参数识别
+            var animationDuration, aniClass, closeTime, animationDurClose
+            obj.animationDuration ? animationDuration = obj.animationDuration : animationDuration = 200
+            obj.aniClass ? aniClass = obj.aniClass : aniClass = "ani-spring"
+            obj.delay ? delay = obj.delay : delay = 1000
+            // obj.animationDurClose ? animationDurClose = obj.animationDurClose : animationDurClose = animationDuration - 100
 
-            $('.wall-alert-content').show();
+            var wallAlert = `
+                <div class="wall-alert" style="display:flex" >
+                    <div class="wall-alert-content wall-animation ${aniClass}" style="display:block;animation-duration: ${animationDuration}ms;">
+                        我是新弹窗
+                    </div>
+                </div>
+            `
+            // 弹出
+             $('html').append(wallAlert)
+             $("." + aniClass).removeClass("aniClass")
+            
+            // 延时关闭 关闭
+           wall.alertTimer =  setTimeout(() => {
+                switch (aniClass) {
+                    case 'ani-spring':
+                        springAni()
+                     break;
+                }
+                function springAni () {
+                    $('.wall-alert-content').addClass('ani-spring-out')
+                    setTimeout(() => {
+                        $(".wall-alert").remove() 
+                    }, animationDuration);
+                }
+                // setTimeout(() => {
+                //     $(".wall-alert").hide();  
+                //     $('.wall-alert-content').hide();
+                // }, 300);  
+            }, delay);
+
+            return false;
+        }
+
+          var wallAlert = `
+            <div class="wall-alert" style="display:flex">
+                <div class="wall-alert-content wall-animation" style="display:block">
+                    我是新弹窗
+                </div>
+            </div>
+         `
+            // $('html,body').append(wallAlert)
+
+
+        $('html,body').click(function () {
+            alertfn({
+                animationDuration: 200,
+                animationDurClose: 200,
+                delay: 1500
+            })
+            return false;
         })
+
+
+        var foo
+        if (true) foo = 1234;
+        foo = 4444;
+        console.log(foo)
+
     </script>
 
 </body>
 
 </html>
-<<<<<<< HEAD
 <!-- js -->
-<script type='text/javascript' src="../js/index.js?t=<?php echo time();?>"></script>
-=======
-    <!-- js -->
-    <script src="../js/index.js?t=<?php echo time();?>" type="text/javascript"></script>
->>>>>>> 1dbd94c1ec33f9f10289b5802a21e22af25c5846
+<script src="../js/index.js?t=<?php echo time();?>" type="text/javascript"></script>

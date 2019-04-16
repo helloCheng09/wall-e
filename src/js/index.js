@@ -32,7 +32,6 @@
 
     // index
 
-
     function fangfa() {
         console.log(wall)
         wall.show()

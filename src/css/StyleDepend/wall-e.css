@@ -993,14 +993,14 @@ h1.loadingtext span:nth-child(7) {
 }
 .wall-alert .wall-alert-content {
   padding: 10px;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 14px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
 }
 .wall-animation {
-  animation-duration: 200ms;
-  animation-timing-function: linear;
+  animation-duration: 400ms;
+  animation-timing-function: forward;
 }
 .ani-spring {
   animation-name: ani-spring;
@@ -1009,10 +1009,28 @@ h1.loadingtext span:nth-child(7) {
   from {
     transform: scale(0.5);
   }
-  50% {
+  80% {
     transform: scale(1.1);
   }
   to {
     transform: scale(1);
+  }
+}
+.ani-spring-out {
+  animation-name: ani-spring-out;
+  animation-fill-mode: forwards;
+}
+@keyframes ani-spring-out {
+  from {
+    opcity: 1;
+    transform: scale(1);
+  }
+  20% {
+    opcity: 0.3;
+    transform: scale(1.1);
+  }
+  to {
+    opcity: 0;
+    transform: scale(0.01);
   }
 }
