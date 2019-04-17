@@ -38,13 +38,13 @@
 
         /**************************** */
         var loadingHtml = `
-            <div id="ajaxloader3">
-                <div class="outer"></div>
-                <div class="inner"></div>
-            </div>
+        <div id="facebook">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
         `
         // wall.loadingShow(loadingHtml)
-        wall.alert();
         console.log(wall.myName)
         $.ajax({
             url: "http://localhost/mockDamai/mockdamai/public/index.php/damaiosadmin/User/adminlogin",
@@ -54,7 +54,18 @@
                 console.log(res)
             }
         })
-
+        /***************************** */
+        $('.mokuai').click(function () {
+            wall.alert("加载中...",{
+                // animationDuratsion: 200,
+                // animationDurClose: 200,
+                delay: 1000,
+                alertHtml: loadingHtml,
+                // marskbg: "black",
+                // bg: "transparent",
+            })
+            return false;
+        })
     }
 
 

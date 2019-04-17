@@ -62,7 +62,9 @@
   border-bottom-color: transparent;
 }
 #ajaxloader2 {
-  margin: 30px auto 0;
+  display: inline-block;
+  height: 60px;
+  margin: auto 0;
 }
 #ajaxloader2 .outer {
   border: 5px solid rgba(0, 183, 229, 0.9);
@@ -110,6 +112,8 @@
   animation-delay: 0;
 }
 #ajaxloader3 {
+  display: inline-block;
+  height: 60px;
   margin: 0 auto;
 }
 #ajaxloader3 .outer {
@@ -995,7 +999,6 @@ h1.loadingtext span:nth-child(7) {
   padding: 10px;
   border-radius: 6px;
   font-size: 14px;
-  background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
 }
 .wall-animation {
@@ -1009,7 +1012,7 @@ h1.loadingtext span:nth-child(7) {
   from {
     transform: scale(0.5);
   }
-  80% {
+  50% {
     transform: scale(1.1);
   }
   to {
@@ -1025,7 +1028,7 @@ h1.loadingtext span:nth-child(7) {
     opcity: 1;
     transform: scale(1);
   }
-  20% {
+  50% {
     opcity: 0.3;
     transform: scale(1.1);
   }
@@ -1033,4 +1036,9 @@ h1.loadingtext span:nth-child(7) {
     opcity: 0;
     transform: scale(0.01);
   }
+}
+.mokuai {
+  width: 100px;
+  height: 100px;
+  background-color: red;
 }

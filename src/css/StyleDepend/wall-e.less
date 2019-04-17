@@ -68,7 +68,9 @@ body {
     border-bottom-color: transparent;
   }
   #ajaxloader2 {
-    margin: 30px auto 0;
+    display: inline-block;
+    height: 60px;
+    margin: auto 0;
   }
   #ajaxloader2 .outer {
     border: 5px solid rgba(0, 183, 229, 0.9);
@@ -116,6 +118,8 @@ body {
     animation-delay: 0;
   }
   #ajaxloader3 {
+    display: inline-block;
+    height: 60px;
     margin: 0 auto;
   }
   #ajaxloader3 .outer {
@@ -1010,7 +1014,7 @@ body {
     border-radius: 6px;
     font-size: 14px;
     // animation:  wall-alert_1 100ms ease-in;  
-    background-color: rgba(0, 0, 0, 0.6);
+    // background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
   }
 
@@ -1028,7 +1032,7 @@ body {
     from {
       transform: scale(.5);
     }
-    80% {
+    50% {
       transform: scale(1.1);
     }
     to {
@@ -1045,14 +1049,11 @@ body {
       opcity:1;
       transform: scale(1);
     }
-    20% {
+    50% {
       opcity:0.3;
       transform: scale(1.1);
     }
-    // 50% {
-    //   opcity:0.3;
-    //   transform: scale(0.5);
-    // }
+   
     to {
       opcity:0;
       transform: scale(0.01);
@@ -1060,3 +1061,11 @@ body {
   }
 
   // ### 2、淡入淡出
+
+
+  // 
+  .mokuai {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+  }

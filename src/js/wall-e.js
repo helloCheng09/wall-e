@@ -166,20 +166,84 @@
      * 
      */
     WallE.prototype.animation = function () {
-        
+
     }
-    
+
     /**
      * alert弹窗
      */
-    WallE.prototype.alert = function () {
-        var alert_ele = $('.wall-alert-content')
-        var halfalertcontentheight =  - alert_ele.height() / 2 + 'px'
-        // alert_ele.css("marginTop", halfalertcontentheight)
+    /**
+     * animationDuration 动画时间
+     * aniClass 动画分类 {ani-spring 弹簧}
+     * delay 延迟关闭时间
+     * maskbg 最外层背景色
+     * bg 文本区域背景色
+     * loadingAni 加载动画预设
+     * 
+     **/
+    WallE.prototype.alert = function (content, options) {
+        // 关闭前一个弹窗
+        clearTimeout(wall.alertTimer)
+        $(".wall-alert").remove()
+        // 参数识别
+        var animationDuration, aniClass, delay,  marskbg, bg
+        options.marskbg ? marskbg = options.marskbg : marskbg = 'transparent'
+        options.bg ? bg = options.bg : bg = 'rgba(0, 0, 0, 0.8)'
+        options.animationDuration ? animationDuration = options.animationDuration : animationDuration = 200;
+        options.aniClass ? aniClass = options.aniClass : aniClass = "ani-spring";
+        options.delay ? delay = options.delay : delay = 1000;
+        var wallAlert = `
+            <div class="wall-alert" style="display:flex" >
+                <div class="wall-alert-content wall-animation ${aniClass}" style="display:block;animation-duration: ${animationDuration}ms;">
+                    ${content}
+                </div>
+            </div>  
+        `;
+        if (!content) {
+          
+           options.alertHtml ? wallAlert = `
+                <div class="wall-alert" style="display:flex" >
+                    <div class="wall-alert-content wall-animation ${aniClass}" style="display:block;animation-duration: ${animationDuration}ms;">
+                        ${options.alertHtml}
+                    </div>
+                </div>  
+            `  :  options.loadingAni ? (function () {
+                switch (options.loadingAni) {
+                    case 1:
+                        // 动画1
+                        
 
+                        break;
+                }
+            }) : wallAlert
+        } 
+       
+        // 弹出
+        $('html').append(wallAlert)
+        $('.wall-alert .wall-alert-content').css('backgroundColor', bg)
+        $('.wall-alert').css('backgroundColor', marskbg)
+        $("." + aniClass).removeClass("aniClass")
+
+        // 延时关闭 关闭
+        wall.alertTimer = setTimeout(() => {
+            switch (aniClass) {
+                case 'ani-spring':
+                    springAni()
+                    break;
+            }
+
+            function springAni() {
+                $('.wall-alert-content').addClass('ani-spring-out')
+                setTimeout(() => {
+                    $(".wall-alert").remove()
+                }, animationDuration);
+            }
+        }, delay);
+        return false;
     }
 
-    
+
+
 
 
     /**
@@ -206,10 +270,10 @@
 
         // 用户已自定义加载动画
         $('html,body').ajaxStart(function () {
-            
+
         });
         $('html,body').ajaxStop(function () {
-            
+
         });
     }
 
