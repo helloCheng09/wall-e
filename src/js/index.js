@@ -39,10 +39,10 @@
         /**************************** */
         var loadingHtml = `
         <div id="facebook">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
         `
         // wall.loadingShow(loadingHtml)
         console.log(wall.myName)
@@ -56,14 +56,30 @@
         })
         /***************************** */
         $('.mokuai').click(function () {
-            wall.alert("加载中...",{
-                // animationDuratsion: 200,
-                // animationDurClose: 200,
-                delay: 1000,
-                alertHtml: loadingHtml,
-                // marskbg: "black",
+            // wall.alert('111', {
+            //     // animationDuratsion: 200,
+            //     // animationDurClose: 200,
+            //     delay: 1000,
+            //     // alertHtml: loadingHtml,
+            //     // marskbg: "black",
+            //     // bg: "transparent",
+            //     loadingAni: 1
+            // })
+
+            var index = wall.load({
+                loadstyle: 6,
                 // bg: "transparent",
             })
+
+            setTimeout(() => {
+               wall.close(index)  
+            }, 200000);
+           
+
+
+
+
+
             return false;
         })
     }

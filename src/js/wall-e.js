@@ -178,7 +178,6 @@
      * delay 延迟关闭时间
      * maskbg 最外层背景色
      * bg 文本区域背景色
-     * loadingAni 加载动画预设
      * 
      **/
     WallE.prototype.alert = function (content, options) {
@@ -186,38 +185,53 @@
         clearTimeout(wall.alertTimer)
         $(".wall-alert").remove()
         // 参数识别
-        var animationDuration, aniClass, delay,  marskbg, bg
+        var animationDuration, aniClass, delay, marskbg, bg
         options.marskbg ? marskbg = options.marskbg : marskbg = 'transparent'
         options.bg ? bg = options.bg : bg = 'rgba(0, 0, 0, 0.8)'
         options.animationDuration ? animationDuration = options.animationDuration : animationDuration = 200;
-        options.aniClass ? aniClass = options.aniClass : aniClass = "ani-spring";
         options.delay ? delay = options.delay : delay = 1000;
-        var wallAlert = `
-            <div class="wall-alert" style="display:flex" >
-                <div class="wall-alert-content wall-animation ${aniClass}" style="display:block;animation-duration: ${animationDuration}ms;">
-                    ${content}
-                </div>
-            </div>  
-        `;
-        if (!content) {
-          
-           options.alertHtml ? wallAlert = `
+        if (!content) { // 有弹窗内容
+            if (options.alertHtml) {
+                wallAlert = `
                 <div class="wall-alert" style="display:flex" >
                     <div class="wall-alert-content wall-animation ${aniClass}" style="display:block;animation-duration: ${animationDuration}ms;">
                         ${options.alertHtml}
                     </div>
                 </div>  
-            `  :  options.loadingAni ? (function () {
-                switch (options.loadingAni) {
-                    case 1:
-                        // 动画1
-                        
-
-                        break;
+            `
+            } else {
+                if (options.loadingAni) {
+                    var loadingAni = options.loadingAni
+                    switch (loadingAni) {
+                        case 1:
+                            // 动画1
+                            wallAlert = `
+                                <div class="wall-alert" style="display:flex" >
+                                    <div class="wall-alert-content wall-animation ${aniClass}" style="display:block;animation-duration: 999999ms;">
+                                        <div id="ajaxloader2">
+                                            <div class="outer"></div>
+                                            <div class="inner"></div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            `
+                            break;
+                    }
+                } else {
+                    console.error('请填入alert内容')
                 }
-            }) : wallAlert
-        } 
-       
+            }
+        } else {
+            options.aniClass ? aniClass = options.aniClass : aniClass = "ani-spring";
+            var wallAlert = `
+                <div class="wall-alert" style="display:flex" >
+                    <div class="wall-alert-content wall-animation ${aniClass}" style="display:block;animation-duration: ${animationDuration}ms;">
+                        ${content}1
+                    </div>
+                </div>  
+            `;
+        }
+
         // 弹出
         $('html').append(wallAlert)
         $('.wall-alert .wall-alert-content').css('backgroundColor', bg)
@@ -242,9 +256,125 @@
         return false;
     }
 
+    /**
+     * 加载动画
+     * fn load()
+     * 
+     * 
+     */
+    WallE.prototype.load = function (options) {
+        var wallAlert, loadstyle, animationDuration, marskbg, bg
+        options.loadstyle ? loadstyle = options.loadstyle : loadstyle = 1 // 加载预设
+        options.marskbg ? marskbg = options.marskbg : marskbg = 'transparent'
+        // options.bg ? bg = options.bg : bg = 'rgba(0, 0, 0, 0.8)'
+        options.bg ? bg = options.bg : bg = 'transparent'
+        switch (loadstyle) {
+            case 1:
+                // 动画1
+                wallAlert = `
+                <div class="wall-alert load-alert" style="display:flex" >
+                        <div class="wall-alert-content wall-animation ani-spring" style="display:block;animation-duration: 200ms;">
+                            <div id="ajaxbar1">
+                            <div id="block1" class="barlittle"></div>
+                            <div id="block2" class="barlittle"></div>
+                            <div id="block3" class="barlittle"></div>
+                            <div id="block4" class="barlittle"></div>
+                            <div id="block5" class="barlittle"></div>
+                    </div>
+                        </div>
+                    </div>  
+                `
+                break
+            case 2:
+                // 动画2
+                wallAlert = `
+                 <div class="wall-alert load-alert" style="display:flex" >
+                         <div class="wall-alert-content wall-animation ani-spring" style="display:block;animation-duration: 200ms;">
+                             <div id="ajaxloader2">
+                                 <div class="outer"></div>
+                                 <div class="inner"></div>
+                             </div>
+                         </div>
+                     </div>  
+                 `
+                break
+            case 3:
+                // 动画3
+                wallAlert = `
+                  <div class="wall-alert load-alert" style="display:flex" >
+                          <div class="wall-alert-content wall-animation ani-spring" style="">
+                            <div id="ajaxwave1">
+                                <div id="pointcircle1" class="pointcircle"></div>
+                                <div id="pointcircle2" class="pointcircle"></div>
+                                <div id="pointcircle3" class="pointcircle"></div>
+                                <div id="pointcircle4" class="pointcircle"></div>
+                                <div id="pointcircle5" class="pointcircle"></div>
+                            </div>
+                          </div>
+                      </div>  
+                  `
+                break
+            case 4:
+                // 动画4
+                wallAlert = `
+                  <div class="wall-alert load-alert" style="display:flex" >
+                          <div class="wall-alert-content wall-animation ani-spring" style="">
+                            <div id="facebook">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div> 
+                          </div>
+                      </div>  
+                  `
+                break
+            case 5:
+                // 动画5
+                wallAlert = `
+                <div class="wall-alert load-alert" style="display:flex" >
+                <div class="wall-alert-content wall-animation ani-spring" style="">
+                <div class="spinner spinnerTwo"><span></span>
+                </div>
+                </div>
+            </div>  
+                  `
+                break
+            case 6:
+                // 动画6
+                wallAlert = `
+                    <div class="wall-alert load-alert" style="display:flex" >
+                        <div class="wall-alert-content wall-animation ani-spring" style="">
+                            <div class="spinner spinnerThree">
+                                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                            </div>
+                        </div>
+                    </div> 
+                  `
+                break
+        }
 
+        $('html').append(wallAlert)
+        $('.wall-alert .wall-alert-content').css('backgroundColor', bg)
+        $('.wall-alert').css('backgroundColor', marskbg)
+        return {
+            source: "load",
+            html: wallAlert
+        }
+    }
 
-
+    /**
+     * 关闭方法
+     */
+    WallE.prototype.close = function (index) {
+        console.log(index)
+        switch (index.source) {
+            case "alert":
+                break;
+            case "load":
+                $('.load-alert').remove()
+                break;
+        }
+    }
 
     /**
      * 基于jq layui的ajax请求加载动画设置
